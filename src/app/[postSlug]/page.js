@@ -30,10 +30,14 @@ async function BlogPost({ params }) {
 	const DivisionGroupsDemo = dynamic(() =>
 		import('@/components/DivisionGroupsDemo/DivisionGroupsDemo'),
 	);
+	const CircularColorsDemo = dynamic(() =>
+		import('@/components/CircularColorsDemo/CircularColorsDemo'),
+	);
 
 	const components = {
 		pre: CodeSnippet,
 		DivisionGroupsDemo,
+		CircularColorsDemo,
 	};
 
 	return (
