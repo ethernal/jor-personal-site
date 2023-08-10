@@ -9,6 +9,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { BLOG_TITLE } from '@/constants';
 
 import CodeSnippet from '@/components/CodeSnippet/CodeSnippet';
+import dynamic from 'next/dynamic';
 
 export async function generateMetadata({ params }) {
 	const post = await loadBlogPost(params.postSlug);
@@ -26,12 +27,20 @@ export async function generateMetadata({ params }) {
 async function BlogPost({ params }) {
 	const post = await loadBlogPost(params.postSlug);
 	const { title, publishedOn } = post.frontmatter;
+	const DivisionGroupsDemo = dynamic(() =>
+		import('@/components/DivisionGroupsDemo/DivisionGroupsDemo'),
+	);
+
+	const components = {
+		pre: CodeSnippet,
+		DivisionGroupsDemo,
+	};
 
 	return (
 		<article className={styles.wrapper}>
 			<BlogHero title={title} publishedOn={publishedOn} />
 			<div className={styles.page}>
-				<MDXRemote source={post?.content} components={{ pre: CodeSnippet }} />
+				<MDXRemote source={post?.content} components={components} />
 			</div>
 		</article>
 	);
