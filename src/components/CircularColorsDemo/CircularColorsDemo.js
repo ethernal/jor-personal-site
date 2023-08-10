@@ -15,7 +15,6 @@ const COLORS = [
 ];
 
 function CircularColorsDemo() {
-	// TODO: This value should increase by 1 every second:
 	const [timeElapsed, setTimeElapsed] = useState(0);
 	const [state, setState] = useState('paused');
 
@@ -29,7 +28,6 @@ function CircularColorsDemo() {
 		return () => window.clearInterval(intervalId);
 	}, [state]);
 
-	// TODO: This value should cycle through the colors in the
 	// COLORS array:
 	const selectedColor = COLORS[timeElapsed % COLORS.length];
 
