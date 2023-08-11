@@ -4,6 +4,13 @@ import BlogSummaryCard from '@/components/BlogSummaryCard';
 
 import styles from './homepage.module.css';
 import { getBlogPostList } from '@/helpers/file-helpers';
+import { BLOG_TITLE } from '@/constants';
+
+export const metadata = {
+	title: BLOG_TITLE,
+	description:
+		"Sebastian's thoughts on software development and all things about life.",
+};
 
 async function Home() {
 	const posts = await getBlogPostList();
@@ -12,7 +19,6 @@ async function Home() {
 		<div className={styles.wrapper}>
 			<h1 className={styles.mainHeading}>Latest Content:</h1>
 
-			{/* TODO: Iterate over the data read from the file system! */}
 			{posts.map((post) => {
 				return (
 					<BlogSummaryCard

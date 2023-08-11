@@ -7,9 +7,7 @@ import { loadBlogPost } from '@/helpers/file-helpers';
 
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { BLOG_TITLE } from '@/constants';
-
-import CodeSnippet from '@/components/CodeSnippet/CodeSnippet';
-import dynamic from 'next/dynamic';
+import { COMPONENT_MAP } from '@/helpers/component-map';
 
 export async function generateMetadata({ params }) {
 	const post = await loadBlogPost(params.postSlug);
@@ -27,18 +25,8 @@ export async function generateMetadata({ params }) {
 async function BlogPost({ params }) {
 	const post = await loadBlogPost(params.postSlug);
 	const { title, publishedOn } = post.frontmatter;
-	const DivisionGroupsDemo = dynamic(() =>
-		import('@/components/DivisionGroupsDemo/DivisionGroupsDemo'),
-	);
-	const CircularColorsDemo = dynamic(() =>
-		import('@/components/CircularColorsDemo/CircularColorsDemo'),
-	);
 
-	const components = {
-		pre: CodeSnippet,
-		DivisionGroupsDemo,
-		CircularColorsDemo,
-	};
+	const components = COMPONENT_MAP;
 
 	return (
 		<article className={styles.wrapper}>

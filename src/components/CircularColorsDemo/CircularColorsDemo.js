@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import clsx from 'clsx';
 import { Play, Pause, RotateCcw } from 'react-feather';
 import { motion } from 'framer-motion';
@@ -15,6 +15,7 @@ const COLORS = [
 ];
 
 function CircularColorsDemo() {
+	const id = useId();
 	const [timeElapsed, setTimeElapsed] = useState(0);
 	const [state, setState] = useState('paused');
 
@@ -41,7 +42,7 @@ function CircularColorsDemo() {
 						<li className={styles.color} key={index}>
 							{isSelected && (
 								<motion.div
-									layoutId="outline"
+									layoutId={`${id}-outline-for-border-in-c-demo`}
 									className={styles.selectedColorOutline}
 									style={{ zIndex: 2 }}
 								/>
