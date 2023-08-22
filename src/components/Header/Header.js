@@ -9,6 +9,7 @@ import VisuallyHidden from '@/components/VisuallyHidden';
 import styles from './Header.module.css';
 import Cookie from 'js-cookie';
 import { DARK_COLORS, LIGHT_COLORS } from '@/constants';
+import Link from 'next/link';
 
 function Header({ initialTheme, className, ...delegated }) {
 	const [theme, setTheme] = useState(initialTheme);
@@ -31,6 +32,13 @@ function Header({ initialTheme, className, ...delegated }) {
 	return (
 		<header className={clsx(styles.wrapper, className)} {...delegated}>
 			<Logo />
+
+			<nav className="flex gap-4">
+				<Link href={`/blog`}>Articles</Link>
+				<Link href={`/about#cv`}>CV</Link>
+				<Link href={`/about`}>About</Link>
+				<Link href={`/contact`}>Contact</Link>
+			</nav>
 
 			<div className={styles.actions}>
 				<button className={styles.action}>
