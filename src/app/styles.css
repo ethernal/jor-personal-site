@@ -183,3 +183,7 @@ button {
 .gap-4 {
   gap: 16px;
 }
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
