@@ -30,6 +30,16 @@ export const loadBlogPost = cache(async (slug) => {
 	return { frontmatter, content };
 });
 
+
+export const loadPageContent = cache(async (path) => {
+	const fileNameWithSuffix = path;
+	const rawContent = await readFile(`/page-content/${fileNameWithSuffix}`);
+
+	const { data: frontmatter, content } = matter(rawContent);
+
+	return { frontmatter, content };
+});
+
 function readFile(localPath) {
 	return fs.readFile(path.join(process.cwd(), localPath), 'utf8');
 }
